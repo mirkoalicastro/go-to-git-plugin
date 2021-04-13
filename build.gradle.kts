@@ -30,6 +30,9 @@ repositories {
 }
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.16.0")
+    implementation("org.eclipse.jgit:org.eclipse.jgit:5.10.0.202012080955-r") {
+        exclude("org.slf4j", "slf4j-api")
+    }
 }
 
 // Configure gradle-intellij-plugin plugin.
