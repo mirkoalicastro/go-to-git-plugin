@@ -1,12 +1,11 @@
-package org.jetbrains.plugins.template.listeners
+package com.github.mirkoalicastro.gitshortcutplugin.listeners
 
+import com.github.mirkoalicastro.gitshortcutplugin.services.MyProjectService
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
-import org.jetbrains.plugins.template.services.MyProjectService
 import java.io.File
-
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 
