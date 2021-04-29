@@ -6,3 +6,8 @@ formatting:
     continuationIndentSize: 8
   ParameterListWrapping:
     indentSize: 4
+exceptions:
+  TooGenericExceptionCaught:
+    active: true
+    exceptionNames:
+      - Error
