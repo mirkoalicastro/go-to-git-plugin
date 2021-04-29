@@ -1,1 +1,1 @@
-rootProject.name = "git-shortcut-plugin"
+rootProject.name = "Go to Git"

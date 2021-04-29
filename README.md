@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-# Git Shortcut Plugin
+# Go to Git
 
-![Version](https://img.shields.io/jetbrains/plugin/v/com.mirkoalicastro.gitshortcut)
+![Version](https://img.shields.io/jetbrains/plugin/v/com.mirkoalicastro.gotogit)
 
 ## Description
 
@@ -21,4 +20,3 @@ TODO.
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
->>>>>>> 8e0123610391af3380feaf0e55e63a4af9d856fc

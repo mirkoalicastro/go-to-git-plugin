@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# git-shortcut-plugin Changelog
+# Changelog
 
 ## [Unreleased]
 ### Added

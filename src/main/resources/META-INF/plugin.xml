@@ -1,19 +1,16 @@
 <idea-plugin>
-    <id>com.github.mirkoalicastro.gitshortcutplugin</id>
-    <name>git-shortcut-plugin</name>
+    <id>com.mirkoalicastro.gotogit</id>
+    <name>Go to Git</name>
     <vendor>mirkoalicastro</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.mirkoalicastro.gitshortcutplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.mirkoalicastro.gitshortcutplugin.services.MyProjectService"/>
-    </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.mirkoalicastro.gitshortcutplugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+    <actions>
+        <action id="actionId" class="com.mirkoalicastro.gotogit.GotoGitAction" text="Open Repo In Browser"
+                description="Open the remote repository url in your default browser">
+            <add-to-group group-id="FileMainSettingsGroup" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
