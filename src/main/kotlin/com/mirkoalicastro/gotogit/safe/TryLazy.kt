@@ -6,7 +6,7 @@ import kotlin.reflect.KProperty
 
 fun <T> tryLazy(initializer: () -> T?) = TryLazy(initializer)
 
-class TryLazy<T>(initializer: () -> T?): Logging {
+class TryLazy<T>(initializer: () -> T?) : Logging {
     private val value: T? by lazy {
         try {
             initializer()
