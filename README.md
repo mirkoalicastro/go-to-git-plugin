@@ -31,8 +31,3 @@ Have a look at and contribute to the GitHub [repo](https://github.com/mirkoalica
 ## External resources
 
 [Here]() the link to the plugin homepage.
-
----
-Plugin based on the [IntelliJ Platform Plugin Template][template].
-
-[template]: https://github.com/JetBrains/intellij-platform-plugin-template
