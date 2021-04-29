@@ -31,3 +31,7 @@ Have a look at and contribute to the GitHub [repo](https://github.com/mirkoalica
 ## External resources
 
 [Here]() the link to the plugin homepage.
+
+## Icons attribution:
+
+[Git Logo](https://git-scm.com/downloads/logos) by [Jason Long](https://twitter.com/jasonlong) is licensed under the [Creative Commons Attribution 3.0 Unported License](https://creativecommons.org/licenses/by/3.0/)
