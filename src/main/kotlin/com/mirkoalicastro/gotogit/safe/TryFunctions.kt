@@ -10,7 +10,7 @@ fun <T> Logging.tryOrNull(initializer: () -> T?) =
         initializer()
     }) {
         logger().error("Failed to execute.", it)
-        initializer()
+        null
     }
 
 fun <T> Logging.tryWith(obj: T?, block: T.() -> Unit) {
