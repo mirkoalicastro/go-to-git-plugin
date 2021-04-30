@@ -1,13 +1,13 @@
 package com.mirkoalicastro.gotogit.browser
 
 import com.mirkoalicastro.gotogit.log.Logging
-import com.mirkoalicastro.gotogit.safe.tryLazy
+import com.mirkoalicastro.gotogit.safe.TryLazy
 import com.mirkoalicastro.gotogit.safe.tryWith
 import java.awt.Desktop
 import java.net.URI
 
 class Browser : Logging {
-    private val desktop: Desktop? by tryLazy {
+    private val desktop: Desktop? by TryLazy {
         Desktop.getDesktop()
     }
 

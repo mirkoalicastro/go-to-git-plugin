@@ -3,8 +3,6 @@ package com.mirkoalicastro.gotogit.safe
 import com.mirkoalicastro.gotogit.log.Logging
 import com.mirkoalicastro.gotogit.log.logger
 
-fun <T> tryLazy(initializer: () -> T?) = TryLazy(initializer)
-
 fun <T> Logging.tryOrNull(initializer: () -> T?) =
     tryOrElse({
         initializer()
