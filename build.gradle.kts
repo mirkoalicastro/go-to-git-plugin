@@ -33,6 +33,9 @@ dependencies {
     implementation("org.eclipse.jgit:org.eclipse.jgit:5.10.0.202012080955-r") {
         exclude("org.slf4j", "slf4j-api")
     }
+    testImplementation("io.kotest:kotest-runner-junit5:4.4.3")
+    testImplementation("io.mockk:mockk:1.11.0")
+
 }
 
 // Configure gradle-intellij-plugin plugin.
@@ -80,6 +83,10 @@ tasks {
 
     withType<Detekt> {
         jvmTarget = "1.8"
+    }
+
+    test {
+        useJUnitPlatform()
     }
 
     patchPluginXml {
