@@ -28,9 +28,7 @@ class Repo(path: String) : Logging {
 
     private fun constructHttpsUrl(sshUrl: String) =
         sshRegex.matchEntire(sshUrl)?.groupValues?.let {
-            val host = it[1]
-            val repo = it[2]
-            "https://$host/$repo/"
+            "https://${it[1]}/${it[2]}/"
         }.also {
             logger().debug("Constructed https url '$it' from ssh url '$sshUrl'")
         }
