@@ -27,30 +27,30 @@ class TryLazyTest : StringSpec({
     "Should invoke initializer when getValue is invoked" {
         val expected = "expected"
         val underTest = TryLazy(initializer)
-        every { initializer.invoke() } returns expected
+        every { initializer() } returns expected
 
         val actual = underTest.getValue(underTest, mockk())
 
         actual shouldBe expected
-        verify { initializer.invoke() }
+        verify { initializer() }
         confirmVerified(initializer)
     }
 
     "Should invoke initializer once" {
         val underTest = TryLazy(initializer)
-        every { initializer.invoke() } returns ""
+        every { initializer() } returns ""
 
         repeat(3) {
             underTest.getValue(underTest, mockk())
         }
 
-        verify(exactly = 1) { initializer.invoke() }
+        verify(exactly = 1) { initializer() }
         confirmVerified(initializer)
     }
 
     "Should return null if initializer threw exception" {
         val underTest = TryLazy(initializer)
-        every { initializer.invoke() } throws Exception()
+        every { initializer() } throws Exception()
 
         val actual = underTest.getValue(underTest, mockk())
 
