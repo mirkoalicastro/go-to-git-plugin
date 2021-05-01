@@ -1,6 +1,5 @@
 package com.mirkoalicastro.gotogit.browser
 
-import com.mirkoalicastro.gotogit.safe.TryLazy
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.data.forAll
@@ -12,68 +11,69 @@ import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.justRun
 import io.mockk.mockk
-import io.mockk.mockkConstructor
 import io.mockk.mockkStatic
 import io.mockk.verify
 import java.awt.Desktop
 import java.net.URI
 import java.net.URISyntaxException
-import kotlin.reflect.full.memberProperties
-import kotlin.reflect.jvm.isAccessible
 
 class BrowserTest : StringSpec({
     val desktop: Desktop = mockk()
 
+    beforeTest {
+        mockkStatic(Desktop::class)
+    }
+
     afterTest {
+        verify(exactly = 1) { Desktop.getDesktop() }
         clearAllMocks()
     }
 
-    "Should retrieve the Desktop from AWT" {
-        mockkStatic(Desktop::class)
+    "isBrowsable should delegate to Desktop" {
         every { Desktop.getDesktop() } returns desktop
         val browser = Browser()
-        val field = Browser::class.memberProperties
-            .firstOrNull { it.name == "desktop" }
-            ?.apply { isAccessible = true }
-
-        val actual = field?.get(browser)
-
-        actual shouldBe desktop
-        verify(exactly = 1) { Desktop.getDesktop() }
-    }
-
-    "isBrowsable should delegate to Desktop" {
         table(
-            headers("desktop", "supported"),
-            row(desktop, true),
-            row(desktop, false)
-        ).forAll { desktop, supported ->
-            injectDesktop(desktop)
-
+            headers("supported"),
+            row(true),
+            row(false)
+        ).forAll { supported ->
             every { desktop.isSupported(Desktop.Action.BROWSE) } returns supported
 
-            val actual = Browser().isBrowsable()
+            val actual = browser.isBrowsable()
 
             actual shouldBe supported
         }
     }
 
     "isBrowsable should return false when desktop is null" {
-        injectDesktop(null)
+        every { Desktop.getDesktop() } returns null
 
         val actual = Browser().isBrowsable()
 
         actual shouldBe false
     }
 
-    "Should not throw any exception when desktop is null" {
-        injectDesktop(null)
+    "isBrowsable should return false when desktop threw exception" {
+        every { Desktop.getDesktop() } throws Exception()
+
+        val actual = Browser().isBrowsable()
+        actual shouldBe false
+    }
+
+    "browse should not throw any exception when desktop threw exception" {
+        every { Desktop.getDesktop() } throws Exception()
 
         Browser().browse("https://github.com/")
     }
 
-    "Should not throw any exception when uri is invalid" {
-        injectDesktop(desktop)
+    "browse should not throw any exception when desktop is null" {
+        every { Desktop.getDesktop() } returns null
+
+        Browser().browse("https://github.com/")
+    }
+
+    "browse should not throw any exception when uri is invalid" {
+        every { Desktop.getDesktop() } returns desktop
         val invalidUri = ":"
 
         Browser().browse(invalidUri)
@@ -81,8 +81,8 @@ class BrowserTest : StringSpec({
         shouldThrow<URISyntaxException> { URI(invalidUri) }
     }
 
-    "Should not throw any exception when browse throws exception" {
-        injectDesktop(desktop)
+    "browse should not throw any exception when desktop#browse throws exception" {
+        every { Desktop.getDesktop() } returns desktop
         val uri = "https://github.com"
         every { desktop.browse(URI(uri)) } throws RuntimeException()
 
@@ -91,8 +91,8 @@ class BrowserTest : StringSpec({
         verify(exactly = 1) { desktop.browse(URI(uri)) }
     }
 
-    "Should delegate to Desktop to browse" {
-        injectDesktop(desktop)
+    "browse should delegate to Desktop to browse" {
+        every { Desktop.getDesktop() } returns desktop
         val uri = "https://github.com"
         justRun { desktop.browse(URI(uri)) }
 
@@ -101,8 +101,3 @@ class BrowserTest : StringSpec({
         verify(exactly = 1) { desktop.browse(URI(uri)) }
     }
 })
-
-private fun injectDesktop(desktop: Desktop?) {
-    mockkConstructor(TryLazy::class)
-    every { anyConstructed<TryLazy<Desktop>>().getValue(any(), any()) } returns desktop
-}

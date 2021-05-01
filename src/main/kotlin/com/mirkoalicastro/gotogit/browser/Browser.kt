@@ -1,14 +1,16 @@
 package com.mirkoalicastro.gotogit.browser
 
 import com.mirkoalicastro.gotogit.log.Logging
-import com.mirkoalicastro.gotogit.safe.TryLazy
+import com.mirkoalicastro.gotogit.safe.tryOrNull
 import com.mirkoalicastro.gotogit.safe.tryWith
 import java.awt.Desktop
 import java.net.URI
 
 class Browser : Logging {
-    private val desktop by TryLazy {
-        Desktop.getDesktop()
+    private val desktop by lazy {
+        tryOrNull {
+            Desktop.getDesktop()
+        }
     }
 
     fun isBrowsable() =
