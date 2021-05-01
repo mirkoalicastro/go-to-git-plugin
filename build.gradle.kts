@@ -18,6 +18,8 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.16.0"
     // ktlint linter - read more: https://github.com/JLLeitschuh/ktlint-gradle
     id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
+    //JaCoCo
+    id("jacoco")
 }
 
 group = properties("pluginGroup")
@@ -86,6 +88,11 @@ tasks {
 
     test {
         useJUnitPlatform()
+        finalizedBy("jacocoTestReport")
+        doLast {
+            println("View code coverage at:")
+            println("file://$buildDir/reports/jacoco/test/html/index.html")
+        }
     }
 
     patchPluginXml {
