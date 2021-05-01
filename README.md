@@ -28,7 +28,7 @@ Have a look at and contribute to the GitHub [repo](https://github.com/mirkoalica
 
 ## External resources
 
-[Here]() the link to the plugin homepage.
+[Here](https://plugins.jetbrains.com/plugin/16714-go-to-git) the link to the plugin homepage.
 
 ## Icons attribution:
 
