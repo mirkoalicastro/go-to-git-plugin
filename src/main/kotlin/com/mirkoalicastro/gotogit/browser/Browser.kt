@@ -7,7 +7,7 @@ import java.awt.Desktop
 import java.net.URI
 
 class Browser : Logging {
-    private val desktop: Desktop? by TryLazy {
+    private val desktop by TryLazy {
         Desktop.getDesktop()
     }
 

@@ -12,15 +12,33 @@ import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkConstructor
+import io.mockk.mockkStatic
+import io.mockk.verify
 import java.awt.Desktop
 import java.net.URI
 import java.net.URISyntaxException
+import kotlin.reflect.full.memberProperties
+import kotlin.reflect.jvm.isAccessible
 
 class BrowserTest : StringSpec({
     val desktop: Desktop = mockk()
 
     afterTest {
         clearAllMocks()
+    }
+
+    "Should retrieve the Desktop from AWT" {
+        mockkStatic(Desktop::class)
+        every { Desktop.getDesktop() } returns desktop
+        val browser = Browser()
+        val field = Browser::class.memberProperties
+            .firstOrNull { it.name == "desktop" }
+            ?.apply { isAccessible = true }
+
+        val actual = field?.get(browser)
+
+        actual shouldBe desktop
+        verify(exactly = 1) { Desktop.getDesktop() }
     }
 
     "isBrowsable should delegate to Desktop" {
@@ -59,9 +77,17 @@ class BrowserTest : StringSpec({
 
         Browser().browse(invalidUri)
 
-        shouldThrow<URISyntaxException> {
-            URI(invalidUri)
-        }
+        shouldThrow<URISyntaxException> { URI(invalidUri) }
+    }
+
+    "Should not throw any exception when browse throws exception" {
+        injectDesktop(desktop)
+        val uri = "https://github.com"
+        every { desktop.browse(URI(uri)) } throws RuntimeException()
+
+        Browser().browse(uri)
+
+        verify(exactly = 1) { desktop.browse(URI(uri)) }
     }
 })
 
