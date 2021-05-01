@@ -1,4 +1,4 @@
-# Go to Git Plugin
+# ![Git logo](docs/icon-25.svg) Go to Git Plugin
 
 ![Version](https://img.shields.io/jetbrains/plugin/v/com.mirkoalicastro.gotogit)
 
