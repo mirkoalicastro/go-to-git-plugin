@@ -6,6 +6,7 @@ import io.kotest.data.headers
 import io.kotest.data.row
 import io.kotest.data.table
 import io.kotest.matchers.shouldBe
+import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkConstructor
@@ -18,6 +19,10 @@ class RepoTest : StringSpec({
     val fileRepoBuilder: FileRepositoryBuilder = mockk()
     val fileRepo: FileRepository = mockk()
     val config: FileBasedConfig = mockk()
+
+    afterTest {
+        clearAllMocks()
+    }
 
     "should return null when FileRepository#setWorkTree throws Exception" {
         val path = "path"
