@@ -9,10 +9,10 @@
 
 This IntelliJ plugin adds an entry in the file main settings group.
 
-![Screenshot of the feature](./docs/screenshot.png)
-
 Have a look at and contribute to the GitHub [repo](https://github.com/mirkoalicastro/go-to-git-plugin).
 <!-- Plugin description end -->
+
+![Screenshot of the feature](./docs/screenshot.png)
 
 ## Installation
 
