@@ -87,6 +87,9 @@ class RepoTest : StringSpec({
             row("http://github.com/mirkoalicastro/", "http://github.com/mirkoalicastro/"),
             row("https://github.com/mirkoalicastro/", "https://github.com/mirkoalicastro/"),
             row("git@github.com:mirkoalicastro/test.git", "https://github.com/mirkoalicastro/test/"),
+            row("git@github.com:.git", null),
+            row("git@:test.git", null),
+            row("git@", null),
             row("ftp://github.com", null)
         ).forAll { remoteOriginUrl, expected ->
             val path = "path"

@@ -10,6 +10,7 @@ import io.kotest.data.table
 import io.kotest.matchers.shouldBe
 import io.mockk.clearAllMocks
 import io.mockk.every
+import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.mockkConstructor
 import io.mockk.mockkStatic
@@ -84,6 +85,16 @@ class BrowserTest : StringSpec({
         injectDesktop(desktop)
         val uri = "https://github.com"
         every { desktop.browse(URI(uri)) } throws RuntimeException()
+
+        Browser().browse(uri)
+
+        verify(exactly = 1) { desktop.browse(URI(uri)) }
+    }
+
+    "Should delegate to Desktop to browse" {
+        injectDesktop(desktop)
+        val uri = "https://github.com"
+        justRun { desktop.browse(URI(uri)) }
 
         Browser().browse(uri)
 

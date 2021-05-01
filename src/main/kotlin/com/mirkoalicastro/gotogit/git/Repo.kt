@@ -6,12 +6,9 @@ import com.mirkoalicastro.gotogit.safe.tryOrNull
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder
 import java.io.File
 
+private val sshRegex = Regex("git@(.+):(.+).git")
+
 class Repo(path: String) : Logging {
-
-    companion object {
-        val sshRegex = Regex("git@(.+):(.+).git")
-    }
-
     private val fileRepository = tryOrNull {
         FileRepositoryBuilder().setWorkTree(File(path)).build()
     }
@@ -29,8 +26,9 @@ class Repo(path: String) : Logging {
     private fun getRemoteUrl() = fileRepository?.config?.getString("remote", "origin", "url")
 
     private fun constructHttpsUrl(sshUrl: String) =
-        sshRegex.matchEntire(sshUrl)?.groupValues?.let {
-            "https://${it[1]}/${it[2]}/"
+        sshRegex.matchEntire(sshUrl)?.let {
+            val group = it.groupValues
+            "https://${group[1]}/${group[2]}/"
         }.also {
             logger().debug("Constructed https url '$it' from ssh url '$sshUrl'")
         }
