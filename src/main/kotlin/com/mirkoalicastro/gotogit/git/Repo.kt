@@ -26,12 +26,12 @@ class Repo(path: String) : Logging {
             }
         }
 
+    private fun getRemoteUrl() = fileRepository?.config?.getString("remote", "origin", "url")
+
     private fun constructHttpsUrl(sshUrl: String) =
         sshRegex.matchEntire(sshUrl)?.groupValues?.let {
             "https://${it[1]}/${it[2]}/"
         }.also {
             logger().debug("Constructed https url '$it' from ssh url '$sshUrl'")
         }
-
-    private fun getRemoteUrl() = fileRepository?.config?.getString("remote", "origin", "url")
 }
