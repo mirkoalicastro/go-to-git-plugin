@@ -2,6 +2,10 @@
 
 # Changelog
 
+## 0.0.2
+### Build
+- Fix gradle build
+
 ## 0.0.1
 ### Added
 - First implementation
