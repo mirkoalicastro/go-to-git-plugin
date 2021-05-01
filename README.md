@@ -5,13 +5,9 @@
 ## Description
 
 <!-- Plugin description -->
-Action to open the Git remote url in your default browser.
+**Action to open the Git repository url in your default browser.**
 
 This IntelliJ plugin adds an entry in the file main settings group.
-
-The entry is enabled for projects that use Git.
-
-When the action is performed, it opens the Git url in the browser.
 
 ![Screenshot of the feature](./docs/screenshot.png)
 
