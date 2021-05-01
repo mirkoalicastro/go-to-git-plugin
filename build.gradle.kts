@@ -32,7 +32,7 @@ repositories {
 }
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.16.0")
-    implementation("org.eclipse.jgit:org.eclipse.jgit:5.10.0.202012080955-r") {
+    implementation("org.eclipse.jgit:org.eclipse.jgit:5.11.0.202103091610-r") {
         exclude("org.slf4j", "slf4j-api")
     }
     testImplementation("io.kotest:kotest-runner-junit5:4.4.3")
@@ -42,7 +42,7 @@ dependencies {
 // Configure gradle-intellij-plugin plugin.
 // Read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
-    pluginName = properties("pluginName")
+    pluginName = properties("pluginName_")
     version = properties("platformVersion")
     type = properties("platformType")
     downloadSources = properties("platformDownloadSources").toBoolean()
