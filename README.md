@@ -13,6 +13,8 @@ The entry is enabled for projects that use Git.
 
 When the action is performed, it opens the Git url in the browser.
 
+![Screenshot of the feature](./docs/screenshot.png)
+
 Have a look at and contribute to the GitHub [repo](https://github.com/mirkoalicastro/go-to-git-plugin).
 <!-- Plugin description end -->
 
