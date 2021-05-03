@@ -5,7 +5,7 @@
 ## Description
 
 <!-- Plugin description -->
-**Action to open the Git repository url in your default browser.**
+**Action to open the Git repository URL in the default browser.**
 
 This IntelliJ plugin adds an entry in the file main settings group.
 

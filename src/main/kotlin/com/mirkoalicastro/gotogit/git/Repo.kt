@@ -30,6 +30,6 @@ class Repo(path: String) : Logging {
             val group = it.groupValues
             "https://${group[1]}/${group[2]}/"
         }.also {
-            logger().debug("Constructed https url '$it' from ssh url '$sshUrl'")
+            logger().debug("Constructed https URL '$it' from ssh URL '$sshUrl'")
         }
 }

@@ -9,7 +9,7 @@
 
     <actions>
         <action id="gotoGit" class="com.mirkoalicastro.gotogit.GotoGitAction" text="Go to Git"
-                description="Open the remote repository url in your default browser">
+                description="Open the remote repository URL in the default browser">
             <add-to-group group-id="FileMainSettingsGroup" anchor="last"/>
         </action>
     </actions>
