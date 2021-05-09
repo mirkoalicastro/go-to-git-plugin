@@ -88,10 +88,23 @@ tasks {
 
     test {
         useJUnitPlatform()
-        finalizedBy("jacocoTestReport")
+        finalizedBy(jacocoTestReport, jacocoTestCoverageVerification)
         doLast {
-            println("View code coverage at:")
-            println("file://$buildDir/reports/jacoco/test/html/index.html")
+            println("View code coverage at: file://$buildDir/reports/jacoco/test/html/index.html")
+        }
+    }
+
+    jacocoTestReport {
+        dependsOn(test)
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                limit {
+                    minimum = BigDecimal.ONE
+                }
+            }
         }
     }
 

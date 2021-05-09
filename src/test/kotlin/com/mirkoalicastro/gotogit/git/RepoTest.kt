@@ -68,29 +68,17 @@ class RepoTest : StringSpec({
         actual shouldBe null
     }
 
-    "should return null when RemoteOriginUrl is null" {
-        val path = "path"
-        mockkConstructor(FileRepositoryBuilder::class)
-        every { anyConstructed<FileRepositoryBuilder>().setWorkTree(File(path)) } returns fileRepoBuilder
-        every { fileRepoBuilder.build() } returns fileRepo
-        every { fileRepo.config } returns config
-        every { config.getString("remote", "origin", "url") } returns null
-
-        val actual = Repo(path).getRepoUrl()
-
-        actual shouldBe null
-    }
-
     "should return repository URL when config is retrieved" {
         table(
             headers("remoteOriginUrl", "expected"),
-            row("http://github.com/mirkoalicastro/", "http://github.com/mirkoalicastro/"),
-            row("https://github.com/mirkoalicastro/", "https://github.com/mirkoalicastro/"),
-            row("git@github.com:mirkoalicastro/test.git", "https://github.com/mirkoalicastro/test/"),
+            row(null, null),
             row("git@github.com:.git", null),
             row("git@:test.git", null),
             row("git@", null),
-            row("ftp://github.com", null)
+            row("ftp://github.com", null),
+            row("http://github.com/mirkoalicastro/", "http://github.com/mirkoalicastro/"),
+            row("https://github.com/mirkoalicastro/", "https://github.com/mirkoalicastro/"),
+            row("git@github.com:mirkoalicastro/test.git", "https://github.com/mirkoalicastro/test/")
         ).forAll { remoteOriginUrl, expected ->
             val path = "path"
             mockkConstructor(FileRepositoryBuilder::class)
