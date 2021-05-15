@@ -1,6 +1,7 @@
 # ![Git logo](docs/icon-25.svg) Go to Git Plugin
 
 ![Version](https://img.shields.io/jetbrains/plugin/v/com.mirkoalicastro.gotogit)
+![JaCoCo 100% coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
 ## Description
 
