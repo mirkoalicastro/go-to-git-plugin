@@ -31,12 +31,12 @@ repositories {
     jcenter()
 }
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.16.0")
-    implementation("org.eclipse.jgit:org.eclipse.jgit:5.11.0.202103091610-r") {
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.18.1")
+    implementation("org.eclipse.jgit:org.eclipse.jgit:5.12.0.202106070339-r") {
         exclude("org.slf4j", "slf4j-api")
     }
-    testImplementation("io.kotest:kotest-runner-junit5:4.4.3")
-    testImplementation("io.mockk:mockk:1.11.0")
+    testImplementation("io.kotest:kotest-runner-junit5:4.6.1")
+    testImplementation("io.mockk:mockk:1.12.0")
 }
 
 // Configure gradle-intellij-plugin plugin.

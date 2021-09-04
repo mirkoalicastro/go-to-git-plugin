@@ -2,6 +2,10 @@
 
 # Changelog
 
+## 0.0.3
+### Configuration
+- Fix compatibility issue
+
 ## 0.0.2
 ### Build
 - Fix gradle build
